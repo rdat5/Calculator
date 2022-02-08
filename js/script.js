@@ -1,3 +1,27 @@
+const numText = document.querySelector('.numbers');
+const numButtons = document.querySelectorAll('.container button');
+
+let displayValue = "";
+
+updateDisplay();
+
+numButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        console.log(button.getAttribute('data-type'))
+        if (displayValue.length < 12 && 
+            button.getAttribute('data-type') === "num")
+        {
+            displayValue += button.textContent;
+            updateDisplay();
+        }
+    });
+});
+
+function updateDisplay()
+{
+    numText.textContent = displayValue;
+}
+
 function add(a, b)
 {
     return a + b;
