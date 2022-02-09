@@ -37,7 +37,7 @@ numButtons.forEach((button) => {
                     operand = displayValue;
                     displayValue = "";
                 }
-                else if (operand !=="" && displayValue !=="")
+                else if (operand !== "" && displayValue !=="")
                 {
                     let answer = operate(operation, parseInt(operand), parseInt(displayValue));        
                     displayValue = answer;
