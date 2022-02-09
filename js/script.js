@@ -3,16 +3,57 @@ const numButtons = document.querySelectorAll('.container button');
 
 let displayValue = "";
 
+let operand = "";
+let operation = "";
+let calcFinished = false;
+
 updateDisplay();
 
 numButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        console.log(button.getAttribute('data-type'))
-        if (displayValue.length < 12 && 
-            button.getAttribute('data-type') === "num")
+        switch (button.getAttribute('data-type'))
         {
-            displayValue += button.textContent;
-            updateDisplay();
+            case "num":
+                if (!displayValue.includes("Don't"))
+                {
+                    displayValue += button.textContent;
+                }
+                updateDisplay();
+                break;
+            case "cls":
+                displayValue = "";
+                operand = "";
+                operation = "";
+                updateDisplay();
+                break;
+            case "op":
+                if (operation === "")
+                {
+                    operation = button.textContent;
+                }
+
+                if (operand === "" && displayValue !== "")
+                {
+                    operand = displayValue;
+                    displayValue = "";
+                }
+                else if (operand !=="" && displayValue !=="")
+                {
+                    let answer = operate(operation, parseInt(operand), parseInt(displayValue));        
+                    displayValue = answer;
+                    operand = displayValue;
+                    updateDisplay();
+                    displayValue = "";
+                    operation = button.textContent;
+                }
+                break;
+            case "eq":
+                let answer = operate(operation, parseInt(operand), parseInt(displayValue));
+                displayValue = answer;
+                operand = "";
+                operation = "";
+                updateDisplay();
+                break;
         }
     });
 });
@@ -39,7 +80,14 @@ function multiply(a, b)
 
 function divide(a, b)
 {
-    return a / b;
+    if (b === 0)
+    {
+        return "Don't do that";
+    }
+    else
+    {
+        return a / b;
+    }
 }
 
 function operate(operator, a, b)
@@ -48,16 +96,16 @@ function operate(operator, a, b)
 
     switch (operator)
     {
-        case "add":
+        case "+":
             result = add(a, b);
             break;
-        case "subtract":
+        case "-":
             result = subtract(a, b);
             break;
-        case "multiply":
+        case "⨯":
             result = multiply(a, b);
             break;
-        case "divide":
+        case "÷":
             result = divide(a, b);
             break;
     }
