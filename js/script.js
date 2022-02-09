@@ -65,17 +65,17 @@ function updateDisplay()
 
 function add(a, b)
 {
-    return a + b;
+    return round(a + b, 12);
 }
 
 function subtract(a, b)
 {
-    return a - b;
+    return round(a - b, 12);
 }
 
 function multiply(a, b)
 {
-    return a * b;
+    return round(a * b, 12);
 }
 
 function divide(a, b)
@@ -86,8 +86,14 @@ function divide(a, b)
     }
     else
     {
-        return a / b;
+        return round(a / b, 12);
     }
+}
+
+function round(number, decimalPlaces)
+{
+    const factorOfTen = Math.pow(10, decimalPlaces)
+    return Math.round(number * factorOfTen) / factorOfTen;
 }
 
 function operate(operator, a, b)
