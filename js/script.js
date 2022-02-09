@@ -48,11 +48,14 @@ numButtons.forEach((button) => {
                 }
                 break;
             case "eq":
-                let answer = operate(operation, parseInt(operand), parseInt(displayValue));
-                displayValue = answer;
-                operand = "";
-                operation = "";
-                updateDisplay();
+                if (operand !== "" && displayValue !== "")
+                {
+                    let answer = operate(operation, parseInt(operand), parseInt(displayValue));
+                    displayValue = answer;
+                    operand = "";
+                    operation = "";
+                    updateDisplay();
+                }
                 break;
         }
     });
