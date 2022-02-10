@@ -110,6 +110,7 @@ footer {
 
 .container button:active {
   filter: brightness(75%);
+  box-shadow: none;
 }
 
 .container .nEq, 
