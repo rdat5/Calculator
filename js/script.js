@@ -14,7 +14,7 @@ numButtons.forEach((button) => {
         switch (button.getAttribute('data-type'))
         {
             case "num":
-                if (!displayValue.includes("Don't"))
+                if (!displayValue.includes("Don't") && displayValue.length < 20)
                 {
                     displayValue += button.textContent;
                 }
